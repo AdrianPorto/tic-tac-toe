@@ -49,7 +49,7 @@ const Game: React.FC<Props> = ({
         ></Score>
       </div>
 
-      <div className="flex content-center justify-center ">
+      <div className="flex content-center justify-center  h-[340px] w-full  ">
         <div className="" id="grid1">
           <div id="dvX"></div>
         </div>

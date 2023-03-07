@@ -39,16 +39,16 @@
 }
 
 #barRow1 {
-  width: 0.9%;
-  height: 47.6%;
+  width: 12.28px;
+  height: 315.58px;
   top: 27%;
   left: 45%;
   position: absolute;
   background-color: white;
 }
 #barRow2 {
-  width: 0.9%;
-  height: 47.6%;
+  width: 12.28px;
+  height: 315.58px;
   right: 45%;
   top: 27%;
   position: absolute;
@@ -76,7 +76,7 @@
   left: 37.4%;
   top: 27%;
   z-index: 100;
-  background-color: ;
+
   cursor: pointer;
 }
 
@@ -87,7 +87,7 @@
   left: 50;
   top: 27%;
   z-index: 100;
-  background-color: ;
+
   cursor: pointer;
 }
 
@@ -98,7 +98,7 @@
   left: 55%;
   top: 27%;
   z-index: 100;
-  background-color: ;
+
   cursor: pointer;
 }
 #grid4 {
