@@ -31,7 +31,7 @@ const User: React.FC<Props> = ({ setUser, setGameStart, user }) => {
             }}
             className="w-60 h-10 border border-gray-600 rounded-lg text-black p-2"
           />{" "}
-          <span id="nome" className="font-thin font-medium">
+          <span id="nome" className=" font-medium">
             Nome
           </span>
         </label>

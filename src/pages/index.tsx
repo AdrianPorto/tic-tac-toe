@@ -3,6 +3,8 @@ import Image from "next/image";
 import React from "react";
 import { useState } from "react";
 import Game from "../components/game";
+import Logo from "../components/logo";
+import Score from "../components/score";
 
 import User from "../components/user";
 
@@ -26,35 +28,31 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className=" flex justify-center items-center  w-screen h-screen">
-        <div className="flex justify-center items-center">
-          {!gameStart && (
-            <User
-              setGameStart={setGameStart}
-              gameStart={gameStart}
-              user={user}
-              setUser={setUser}
-            ></User>
-          )}
-        </div>
+        {!gameStart && (
+          <div className="flex flex-col">
+            <Logo></Logo>
+            <div className="flex justify-center items-center">
+              <User
+                setGameStart={setGameStart}
+                gameStart={gameStart}
+                user={user}
+                setUser={setUser}
+              ></User>
+            </div>
+          </div>
+        )}
 
         {gameStart && (
-          <div className="flex flex-1 justify-start content-start w-screen h-screen p-10">
-            <Game
-              user={user}
-              setUser={setUser}
-              wins={wins}
-              setWins={setWins}
-              losers={losers}
+          <div className="flex flex-1 justify-start content-start w-screen h-screen p-7  ">
+            <Score
               setLosers={setLosers}
-              positions={positions}
-              setPositions={setPositions}
-              chance={chance}
-              setChance={setChance}
-              count={count}
-              setCount={setCount}
-              x={x}
-              isX={isX}
-            ></Game>
+              losers={losers}
+              wins={wins}
+              setUser={setUser}
+              setWins={setWins}
+              user={user}
+            ></Score>
+            <Game user={user} wins={wins} losers={losers}></Game>
           </div>
         )}
       </div>

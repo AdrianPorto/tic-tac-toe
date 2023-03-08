@@ -19,7 +19,7 @@ const Score: React.FC<Props> = ({
   losers,
 }) => {
   return (
-    <div className="w-52 h-[115px] bg-white rounded-xl">
+    <div className="w-52 h-[115px] bg-white rounded-xl absolute">
       <div className="flex flex-col ">
         <p className={"text-center mt-2 text-lg font-bold "} id="pontuacao">
           Pontuação
@@ -28,7 +28,7 @@ const Score: React.FC<Props> = ({
           <span className="text-green-700 text-xl font-bold" id="pontuacao">
             Vitorias: {wins}
           </span>
-          <span className="text-red-700 text-xl " id="pontuacao">
+          <span className="text-red-700 text-xl   font-bold" id="pontuacao">
             Percas: {losers}
           </span>
         </div>
