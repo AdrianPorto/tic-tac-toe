@@ -2,7 +2,6 @@ import React from "react";
 
 // import { Container } from './styles';
 interface Props {
-  setUser: (value: string) => void;
   setWins: (value: number) => void;
   setLosers: (value: number) => void;
   user: string;
@@ -10,14 +9,8 @@ interface Props {
   losers: number;
 }
 
-const Score: React.FC<Props> = ({
-  setUser,
-  setWins,
-  setLosers,
-  user,
-  wins,
-  losers,
-}) => {
+const Score: React.FC<Props> = ({ setWins, setLosers, user, wins, losers }) => {
+  console.log(user + " Cavaloo");
   return (
     <div className="w-52 h-[115px] bg-white rounded-xl absolute">
       <div className="flex flex-col ">

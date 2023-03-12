@@ -1,11 +1,16 @@
-import { use, useState } from "react";
+import { stat } from "fs";
+import { useEffect, useState } from "react";
 import Score from "../score";
 import Square from "../Square";
+
 interface Props {
-  user: string;
+  setWins: (value: number) => void;
+  setLosers: (value: number) => void;
+  user: any;
   wins: number;
   losers: number;
 }
+
 const BOARD_SIZE = 3;
 
 function calculateWinner(squares: string[]): string | null {
@@ -28,7 +33,7 @@ function calculateWinner(squares: string[]): string | null {
   return null;
 }
 
-const Game: React.FC<Props> = ({ losers, user, wins }) => {
+const Game: React.FC<Props> = ({ user, losers, setLosers, setWins, wins }) => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
 
@@ -48,14 +53,30 @@ const Game: React.FC<Props> = ({ losers, user, wins }) => {
     );
   }
 
-  const winner = calculateWinner(squares);
+  let winner = calculateWinner(squares);
   let status: string;
+
+  if (winner == "X") {
+    winner = "Adrian";
+  }
+
   if (winner) {
     status = ` Vencedor: ${winner}`;
   } else if (squares.every((square) => square !== null)) {
     status = "Empate";
-  } else {
-    status = `Jogador:  `;
+  }
+  if ((status = "X")) {
+    status = "Adrian";
+  }
+
+  function handleRestart() {
+    setSquares(Array(9).fill(null));
+    setXIsNext(true);
+    if (winner == "Adrian") {
+      setWins(wins + 1);
+    } else if (winner == "O") {
+      setLosers(losers + 1);
+    }
   }
 
   return (
@@ -63,13 +84,12 @@ const Game: React.FC<Props> = ({ losers, user, wins }) => {
       <div className="mb-4 font-bold text-2xl  text-white">
         {winner ? (
           <div className="text-3xl flex-row flex">
-            Vencedor:{" "}
+            Vencedor:
             <div
               className={`ml-3 text-4xl -my-0 ${
                 winner == "O" ? "text-green-500" : "text-red-700"
               } `}
             >
-              {" "}
               {winner}
             </div>
           </div>
@@ -107,6 +127,14 @@ const Game: React.FC<Props> = ({ losers, user, wins }) => {
           <div className="">{renderSquare(6)}</div>
           <div className="">{renderSquare(7)}</div>
           <div className="">{renderSquare(8)}</div>
+        </div>
+        <div className="flex flex-1 justify-center mt-10">
+          <button
+            className="px-4 py-2  mt-4 font-bold text-white bg-blue-500 rounded-lg shadow-lg hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            onClick={handleRestart}
+          >
+            Restart
+          </button>
         </div>
       </div>
     </div>

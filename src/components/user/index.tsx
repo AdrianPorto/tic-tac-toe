@@ -9,10 +9,6 @@ interface Props {
 }
 
 const User: React.FC<Props> = ({ setUser, setGameStart, user }) => {
-  function atualizar(e: String) {
-    user = e;
-  }
-  console.log(user);
   return (
     <div className="bg-white h-52 w-72 rounded-xl flex justify-center content-center">
       <div className="mt-10">
@@ -26,8 +22,7 @@ const User: React.FC<Props> = ({ setUser, setGameStart, user }) => {
             id="inputNome"
             required
             onChange={(e) => {
-              atualizar(e.target.value);
-              console.log(user);
+              setUser(e.target.value);
             }}
             className="w-60 h-10 border border-gray-600 rounded-lg text-black p-2"
           />{" "}

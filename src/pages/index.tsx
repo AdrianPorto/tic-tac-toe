@@ -5,9 +5,7 @@ import { useState } from "react";
 import Game from "../components/game";
 import Logo from "../components/logo";
 import Score from "../components/score";
-
 import User from "../components/user";
-
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -15,10 +13,6 @@ export default function Home() {
   const [user, setUser] = useState("");
   const [wins, setWins] = useState(0);
   const [losers, setLosers] = useState(0);
-  const [chance, setChance] = useState(true);
-  const [x, isX] = useState(false);
-  const [positions, setPositions] = useState([""]);
-  const [count, setCount] = useState(0);
 
   return (
     <div className="bg-gray-900  w-screen h-screen">
@@ -48,11 +42,16 @@ export default function Home() {
               setLosers={setLosers}
               losers={losers}
               wins={wins}
-              setUser={setUser}
               setWins={setWins}
               user={user}
             ></Score>
-            <Game user={user} wins={wins} losers={losers}></Game>
+            <Game
+              user={user}
+              wins={wins}
+              losers={losers}
+              setWins={setWins}
+              setLosers={setLosers}
+            ></Game>
           </div>
         )}
       </div>
