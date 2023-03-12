@@ -36,7 +36,8 @@ function calculateWinner(squares: string[]): string | null {
 const Game: React.FC<Props> = ({ user, losers, setLosers, setWins, wins }) => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
-
+  let status = "";
+  let jogador = "";
   function handleClick(i: number) {
     const newSquares = squares.slice();
     if (calculateWinner(squares) || newSquares[i]) {
@@ -54,10 +55,11 @@ const Game: React.FC<Props> = ({ user, losers, setLosers, setWins, wins }) => {
   }
 
   let winner = calculateWinner(squares);
-  let status: string;
 
   if (winner == "X") {
-    winner = "Adrian";
+    winner = user;
+  } else if (winner == "O") {
+    winner = "Jogador";
   }
 
   if (winner) {
@@ -65,16 +67,13 @@ const Game: React.FC<Props> = ({ user, losers, setLosers, setWins, wins }) => {
   } else if (squares.every((square) => square !== null)) {
     status = "Empate";
   }
-  if ((status = "X")) {
-    status = "Adrian";
-  }
 
   function handleRestart() {
     setSquares(Array(9).fill(null));
     setXIsNext(true);
-    if (winner == "Adrian") {
+    if (winner == user) {
       setWins(wins + 1);
-    } else if (winner == "O") {
+    } else if (winner != user) {
       setLosers(losers + 1);
     }
   }
@@ -97,7 +96,7 @@ const Game: React.FC<Props> = ({ user, losers, setLosers, setWins, wins }) => {
           status
         ) : (
           <div className=" flex flex-row">
-            {status}
+            {xIsNext ? `${user}  ` : "Jogador"}
             <div
               className={`flex  flex-row ml-4   -my-1 text-4xl  ${
                 xIsNext ? "text-red-700" : "text-green-500"
